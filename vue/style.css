@@ -99,3 +99,25 @@ header input {
     text-overflow: clip;
     background-color: #FFFFFF;
 }
+
+
+
+/*//////////////////////////////// FORMULAIRE /////////////////////////////*/
+
+.progression-ajout {
+    width: 400px;
+    height: 20px;
+    background: #b5bac0;
+    border-radius: 10px;
+    margin : 10px auto 10px auto;
+    overflow: hidden;
+}
+
+.progression-ajout .barre-ajout {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(45deg, #adffad, #8adb83);
+    transition: width 0.5s ease;
+}
+
+
