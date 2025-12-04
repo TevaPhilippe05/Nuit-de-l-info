@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -37,31 +38,33 @@
 <h1>Test des fonctions Questions / Réponses</h1>
 
 <?php
-require_once "lib/qcm.php";
 
-$questions = GetQuestions($conn);
+    require_once "lib/qcm.php";
 
-foreach ($questions as $q) {
-    echo "<div class='question'>";
-    echo "<h2>Question : " . $q['question'] . "</h2>";
+    $questions = GetQuestions($conn);
 
-    $reponses = GetReponsesByQuestionId($conn, $q['id']);
+    foreach ($questions as $q) {
+        echo "<div class='question'>";
+        echo "<h2>Question : " . $q['question'] . "</h2>";
 
-    foreach ($reponses as $r) {
-        $statut = EstVrai($conn, $r['id']);
+        $reponses = GetReponsesByQuestionId($conn, $q['id']);
 
-        if ($statut == 1) {
-            echo "<div class='reponse vrai'>✔ " . $r['reponse'] . "</div>";
-        } else {
-            echo "<div class='reponse faux'>✖ " . $r['reponse'] . "</div>";
+        foreach ($reponses as $r) {
+            $statut = EstVrai($conn, $r['id']);
+
+            if ($statut == 1) {
+                echo "<div class='reponse vrai'>✔ " . $r['reponse'] . "</div>";
+            } else {
+                echo "<div class='reponse faux'>✖ " . $r['reponse'] . "</div>";
+            }
         }
+
+        echo "</div>";
     }
 
-    echo "</div>";
-}
-
-mysqli_close($conn);
+    mysqli_close($conn);
 ?>
 
 </body>
 </html>
+
