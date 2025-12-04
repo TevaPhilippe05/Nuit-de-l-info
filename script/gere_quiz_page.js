@@ -11,7 +11,7 @@ function create(tag, container, text=null) {
     return element;
 }
 
-
+let exemple_id_question = parseInt(id_question);
 let bouton_suivant = document.querySelector(".bt_suivant");
 bouton_suivant.addEventListener("click", function() {
     exemple_id_question += 1; // mettre du get
