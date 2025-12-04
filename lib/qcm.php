@@ -1,7 +1,9 @@
 <?php
-// faire une connexion a la bdd 
-$conn = mysqli_connect("localhost", "root", "", "ndi_2025");
-mysqli_set_charset($conn, "utf8");
+    // crud et mysql 
+    mysqli_fetch_assoc($rs); // permet d'avoir le resultat de la requette ligne par ligne 
+    // faire une connexion a la bdd 
+    $conn = mysqli_connect("localhost", "cass", "**", "data_base");
+    mysqli_set_charset($conn, "utf8");
 
 function GetQuestions($conn)
 {
