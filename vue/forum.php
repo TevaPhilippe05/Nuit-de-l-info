@@ -16,7 +16,7 @@
             <a href="index.php" class="titre_header">
                 <p>NOM_SITE</p>
             </a>
-            <input type="text" onchange="">
+            <input type="text" onchange="" placeholder="Rechercher un logiciel">
         </div>
 
         <a id="img_profil" href="TODO"><img src="../imgs/profil.png" alt="img profil"></a>
