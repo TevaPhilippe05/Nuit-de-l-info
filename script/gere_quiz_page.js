@@ -16,5 +16,5 @@ let exemple_id_question = 1;
 let bouton_suivant = document.querySelector(".bt_suivant");
 bouton_suivant.addEventListener("click", function() {
     exemple_id_question = parseInt(id_question) + 1;
-    window.location.href = "qcm.html?id_quiz=1&id_question=" + exemple_id_question;
+    window.location.href = "qcm.html?id_question=" + exemple_id_question;
 });
