@@ -4,6 +4,8 @@ var urlParams = new URLSearchParams(queryString);
 //var id_quiz = params.get("id_quiz");
 var id_question = urlParams.get("id_question");
 
+id_question = id_question || 1; // valeur par défaut si pas de paramètre
+
 function create(tag, container, text=null) {
     const element = document.createElement(tag);
     element.innerText = text;
