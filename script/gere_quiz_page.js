@@ -28,7 +28,16 @@ let question = document.querySelector(".question");
 
 function afficherQuestion(id_question) {
     // fetch sur le json avec id_question en param
+    //fetch("../lib/question_json.php?id_question=" + id_question)
+    
+    fetch("../lib/question_json.php").then(response => response.json()).then(data => {
+        console.log(data);
+    });
+
+
 }
+
+afficherQuestion(1);
 
 function afficherReponsesFromQuestion(id_question) {
     // fetch sur le json

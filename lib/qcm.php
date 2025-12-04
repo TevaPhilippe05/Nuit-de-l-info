@@ -2,7 +2,7 @@
     // crud et mysql 
     mysqli_fetch_assoc($rs); // permet d'avoir le resultat de la requette ligne par ligne 
     // faire une connexion a la bdd 
-    $conn = mysqli_connect("localhost", "cass", "**", "data_base");
+    $conn = mysqli_connect("localhost", "root", "root" ,"quiz");
     mysqli_set_charset($conn, "utf8");
 
     function GetQuestions($conn){
