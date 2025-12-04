@@ -1,33 +1,56 @@
 <?php
-    // crud et mysql 
-    mysqli_fetch_assoc($rs); // permet d'avoir le resultat de la requette ligne par ligne 
-    // faire une connexion a la bdd 
-    $conn = mysqli_connect("localhost", "cass", "**", "data_base");
-    mysqli_set_charset($conn, "utf8");
+// faire une connexion a la bdd 
+$conn = mysqli_connect("localhost", "root", "", "ndi_2025");
+mysqli_set_charset($conn, "utf8");
 
-    function GetQuestions($conn){
-        $sql="SELECT * FROM questions";
-        $res=mysqli_query($conn, $sql);
-        return $res ;
+function GetQuestions($conn)
+{
+    $sql = "SELECT * FROM questions";
+    $res = mysqli_query($conn, $sql);
+
+    $data = [];
+    while ($row = mysqli_fetch_assoc($res)) {
+        $data[] = $row;
+    }
+    return $data;
+}
+
+function GetQuestionById($conn, $id_question)
+{
+    $id_question = (int)$id_question;
+
+    $sql = "SELECT * FROM questions WHERE id = $id_question";
+    $res = mysqli_query($conn, $sql);
+
+    return mysqli_fetch_assoc($res);
+}
+
+function EstVrai($conn, $id_reponse)
+{
+    $id_reponse = (int)$id_reponse;
+
+    $sql = "SELECT estVrai FROM reponses WHERE id = $id_reponse";
+    $res = mysqli_query($conn, $sql);
+
+    $data = mysqli_fetch_assoc($res);
+    return $data['estVrai'];
+}
+
+function GetReponsesByQuestionId($conn, $id_question)
+{
+    $id_question = (int)$id_question;
+
+    $sql = "SELECT * FROM reponses WHERE id_question = $id_question";
+    $res = mysqli_query($conn, $sql);
+
+    if (!$res) {
+        die("ERREUR SQL GetReponsesByQuestionId : " . mysqli_error($conn));
     }
 
-    function GetQuestionById($conn, $id_question){
-        $sql="SELECT * FROM questions WHERE id = $id_question";
-        $res=mysqli_query($conn, $sql);
-        return $res ;
+    $data = [];
+    while ($row = mysqli_fetch_assoc($res)) {
+        $data[] = $row;
     }
 
-    function EstVrai($conn, $id_reponse){
-        $sql="SELECT estVrai FROM reponse WHERE id = $id_reponse";
-        $res=mysqli_query($conn, $sql);
-        return $res ;
-    }
-
-    function GetReponsesByQuestionId($conn, $id_question){
-        $sql="SELECT * FROM reponse WHERE id = $id_question";
-        $res=mysqli_query($conn, $sql);
-        return $res ;
-    }
-    // deconnecter 
-    mysqli_close($conn);
-?>
+    return $data;
+}
