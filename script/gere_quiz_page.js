@@ -1,119 +1,125 @@
-
 const queryString = window.location.search;
-var urlParams = new URLSearchParams(queryString);
+const urlParams = new URLSearchParams(queryString);
 
-var id_question = urlParams.get("id_question");
-
-id_question = id_question || 1; // valeur par défaut si pas de paramètre
-
-function create(tag, container, text = null) {
-    const element = document.createElement(tag);
-    element.innerText = text;
-    container.appendChild(element);
-    return element;
-}
-
-
-let exemple_id_question = parseInt(id_question);
-let bouton_suivant = document.querySelector(".bt_suivant");
-
-
-let choix_1 = document.querySelector("#rep1");
-let choix_2 = document.querySelector("#rep2");
-let choix_3 = document.querySelector("#rep3");
-let choix_4 = document.querySelector("#rep4");
-
-
-let question = document.querySelector(".question");
-
-function afficherQuestion(id_question) {
-    // fetch sur le json avec id_question en param
-    //fetch("../lib/question_json.php?id_question=" + id_question)
-    
-    fetch("../lib/question_json.php").then(response => response.json()).then(data => {
-        console.log(data);
-    });
-
-
-}
-
-afficherQuestion(1);
-
-function afficherReponsesFromQuestion(id_question) {
-    // fetch sur le json
-    choix_1.innerText = "Réponse 1"; // mettre les vraies valeurs
-    choix_2.innerText = "Réponse 2";
-    choix_3.innerText = "Réponse 3";
-    choix_4.innerText = "Réponse 4";
-}
-//afficherReponsesFromQuestion(1);
-
-let image = document.querySelector("#img_question");
-
-function afficherImageFromQuestion(id_question) {
-    // fetch sur le json avec id_qestion en param
-}
-
+let id_question = parseInt(urlParams.get("id_question")) || 1; // ID de la question actuelle
+const reponsesContainer = document.querySelector(".reponses");
+const questionTitre = document.querySelector(".question");
+const resultatDiv = document.querySelector(".resultat");
+const boutonSuivant = document.querySelector(".bt_suivant");
+const imageQuestion = document.querySelector("#img_question");
 let reponseSelectionee = false;
-let reponseChoix = "";
+let reponseBloquee = false; 
 
-function choix_reponse() {
-    choix_1.addEventListener("click", function () {
-        reponseSelectionee = true;
-        reponseChoix = choix_1.innerHTML;
-        console.log(reponseChoix);
-    })
 
-    choix_2.addEventListener("click", function () {
-        reponseSelectionee = true;
-        reponseChoix = choix_2.innerHTML;
-        console.log(reponseChoix);
-    })
+let questionActuelle = null; 
 
-    choix_3.addEventListener("click", function () {
-        reponseSelectionee = true;
-        reponseChoix = choix_3.innerHTML;
-        console.log(reponseChoix);
-    })
-    choix_4.addEventListener("click", function () {
-        reponseSelectionee = true;
-        reponseChoix = choix_4.innerHTML;
-        console.log(reponseChoix);
-    })
+/**
+ * Charge les données de la question depuis le serveur et les affiche.
+ * @param {number} id La question à charger.
+ */
+function afficherQuestion(id) {
+    fetch(`lib/question_json.php?id_question=${id}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                questionTitre.innerText = "Fin du quiz !";
+                reponsesContainer.innerHTML = "";
+                boutonSuivant.removeEventListener('click', gererQuestionSuivante);
+                boutonSuivant.innerText = "Recommencer";
+                boutonSuivant.addEventListener('click', () => window.location.href = "jeu-quiz.php?id_question=1");
+                return;
+            }
+
+            questionActuelle = data;
+            questionTitre.innerText = questionActuelle.question;
+            
+            // Affichage de l'image (si un champ 'image_url' existait dans la BDD)
+            // if (questionActuelle.image_url) {
+            //     imageQuestion.src = questionActuelle.image_url;
+            // }
+
+            afficherReponses(questionActuelle.reponses);
+        })
+        .catch(error => console.error("Erreur de chargement :", error));
 }
 
-choix_reponse();
+/**
+ * Affiche les boutons de réponse pour la question actuelle.
+ * @param {Array<Object>} reponses Liste des objets réponse.
+ */
+function afficherReponses(reponses) {
+    reponsesContainer.innerHTML = '';
+    resultatDiv.setAttribute('hidden', ''); 
+    resultatDiv.innerHTML = '';
+    reponseBloquee = false;
 
-function reponseFinale() {
-    // fetch sur le json pour savoir si estVrai
+    reponses.forEach(rep => {
+        const bouton = document.createElement("div");
+        bouton.className = "bt_reponse";
+        bouton.innerText = rep.reponse;
+        bouton.dataset.idReponse = rep.id;
+        bouton.dataset.estVrai = rep.estVrai; 
 
-
-
-    if (reponseSelectionee && verifier_veraciter()) {
-        document.querySelector(".resultat").innerHTML = "Bonne réponse !";
-    }
-    else {
-        document.querySelector(".resultat").innerHTML = "Mauvaise réponse !";
-    }
-
-}
-
-
-// a activé seulement si true dans reponse avec estVrai
-function questionSuivante() {
-    bouton_suivant.addEventListener("click", function () {
-
-        if (!reponseSelectionee) {
-            alert("Veuillez sélectionner une réponse avant de continuer.");
-            window.location.href = "qcm.html?id_question=" + exemple_id_question;
-        
-        }
-        else{
-            exemple_id_question += 1; // mettre du get
-            window.location.href = "qcm.html?id_question=" + exemple_id_question;
-        }
-        
+        bouton.addEventListener('click', () => verifierReponse(bouton, rep));
+        reponsesContainer.appendChild(bouton);
     });
 }
 
-questionSuivante();
+/**
+ * Vérifie la réponse sélectionnée et affiche le résultat/l'explication.
+ * @param {HTMLElement} bouton L'élément HTML du bouton cliqué.
+ * @param {Object} reponse L'objet réponse correspondant.
+ */
+function verifierReponse(bouton, reponse) {
+    if (reponseBloquee) return; 
+
+    reponseBloquee = true;
+    const estCorrect = parseInt(reponse.estVrai) === 1;
+
+    
+    resultatDiv.removeAttribute('hidden');
+
+    if (estCorrect) {
+        bouton.classList.add('reponse-correcte');
+        resultatDiv.innerHTML = `<strong>Bonne réponse !</strong>`;
+    } else {
+        bouton.classList.add('reponse-fausse');
+        resultatDiv.innerHTML = `<strong>Mauvaise réponse !</strong>`;
+
+        
+        const tousLesBoutons = reponsesContainer.querySelectorAll('.bt_reponse');
+        tousLesBoutons.forEach(btn => {
+            if (parseInt(btn.dataset.estVrai) === 1) {
+                btn.classList.add('reponse-correcte');
+            }
+        });
+    }
+
+    // Ajout de l'explication
+    if (questionActuelle.explication) {
+        resultatDiv.innerHTML += `<br><p id="contexte"><strong>Explication :</strong> ${questionActuelle.explication}</p>`;
+    }
+
+    // Désactive les clics sur tous les boutons de réponse après la vérification
+    reponsesContainer.querySelectorAll('.bt_reponse').forEach(btn => {
+        btn.style.pointerEvents = 'none';
+    });
+}
+
+/**
+ * Passe à la question suivante.
+ */
+function gererQuestionSuivante() {
+    if (!reponseBloquee) {
+        alert("Veuillez sélectionner une réponse avant de continuer.");
+        return;
+    }
+    // Incrémente l'ID et recharge la page pour le nouvel ID
+    id_question += 1; 
+    window.location.href = `jeu-quiz.php?id_question=${id_question}`;
+}
+
+boutonSuivant.addEventListener("click", gererQuestionSuivante);
+
+// Lance le quiz en affichant la première question
+afficherQuestion(id_question);
