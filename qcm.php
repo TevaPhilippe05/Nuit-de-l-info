@@ -11,6 +11,12 @@
         return $res ;
     }
 
+    function GetQuestionById($conn, $id_question){
+        $sql="SELECT * FROM questions WHERE id = $id_question";
+        $res=mysqli_query($conn, $sql);
+        return $res ;
+    }
+
     function EstVrai($conn, $id_reponse){
         $sql="SELECT estVrai FROM reponse WHERE id = $id_reponse";
         $res=mysqli_query($conn, $sql);
