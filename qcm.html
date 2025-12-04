@@ -4,24 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
+    <link rel="stylesheet" href="style/page-qcm.css">
 </head>
 <body>
-    <h1>QUIZZ</h1>
+    <h1 class="titre">QUIZZ</h1>
 
-    <img src="" alt="img_question">
-
-    <h2 class="question">Linux, c'est bien ?</h2>
-
-    <div class="reponses">
-        <button id="rep1" class="bt_reponse">Non</button>
-        <button id="rep2" class="bt_reponse">Non en jaune</button>
-        <button id="rep3" class="bt_reponse">Non en rouge</button>
-        <button id="rep4" class="bt_reponse">Oui, votez Jassem</button>
+    <div class="container-img">
+        <img id="img_question" src="" alt="img_question">
     </div>
 
-    <div class="resultat"></div>
+    <h2 class="question">Voici votre question : </h2>
 
-    <button class="bt_suivant">Suivant</button>
+    <div class="reponses">
+        <div id="rep1" class="bt_reponse">Non</div>
+        <div id="rep2" class="bt_reponse">Non en jaune</div>
+        <div id="rep3" class="bt_reponse">Non en rouge</div>
+        <div id="rep4" class="bt_reponse">Oui, votez Jassem</div>
+    </div>
+
+    <h2 class="resultat-titre">Résultat :</h2>
+
+    <div class="resultat" hidden>
+        <div id="contexte">Lorem ipsum dolor sit amet.</div><br>
+    </div>
+
+    <div class="bt_suivant">Suivant</div>
 
     <script src="script/gere_quiz_page.js"></script>
 </body>
