@@ -9,6 +9,9 @@
     color: inherit;
 }
 
+
+HEADER
+
 header {
     position: sticky;
     top: 0;
@@ -21,4 +24,58 @@ header {
 
 header *{
     background-color: #ffffff00;
+}
+
+#barre_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+#sous_barre_header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 75%;
+    max-width: 75%;
+}
+
+.titre_header {
+    /*centrer le texte*/
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /*teille de l'elem*/
+    width: 31%;
+    height: 55%;
+    /*couleurs, gestion du txt*/
+    background-color: #FFFFFF;
+    border-radius: 60px;
+    /*gestion de l'overflow */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.titre_header p {
+    margin: 15px;
+    background-color: #FFFFFF;
+    color: #2A78FF;
+    font-family: 'Futuristic';
+    font-weight: bold;
+    font-size: calc(1.5vw + 0.2em);
+    text-overflow: clip;
+}
+
+.titre_header:hover {
+    background-color: #2A78FF;
+}
+
+.titre_header:hover p {
+    color: #FFFFFF;
+    background-color: #2A78FF;
+}
+header img {
+    max-height: 100px;
 }
