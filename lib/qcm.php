@@ -54,3 +54,13 @@ function GetReponsesByQuestionId($conn, $id_question)
 
     return $data;
 }
+
+function GetExplicationByQuestionId($conn, $id_question)
+{
+    $id_question = (int)$id_question;
+
+    $sql = "SELECT * FROM explications WHERE id_question = $id_question";
+    $res = mysqli_query($conn, $sql);
+
+    return mysqli_fetch_assoc($res);
+}
