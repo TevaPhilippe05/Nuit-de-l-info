@@ -33,4 +33,32 @@
 - Ne détruisent absolument pas l'environnement
 - Proposent obligatoirement des licences gratuites pour l'administration française
 
- 
+ Quel est l’un des objectifs principaux de la distribution Linux NIRD ?
+A. Remplacer entièrement les serveurs académiques
+✅ B. Fournir une distribution adaptée au secondaire
+C. Créer un système propriétaire pour les collèges
+D. Fournir uniquement des outils de bureautique
+
+Quelle est la base technique de la distribution Linux NIRD ?
+A. Ubuntu + GNOME
+B. Debian + KDE
+✅ C. Linux Mint + Xfce + Plank
+D. Arch Linux + i3
+
+À quel niveau scolaire est destinée la distribution PrimTux ?
+A. Université
+B. Lycée uniquement
+✅ C. École primaire
+D. Formation professionnelle
+
+Quel organisme soutient officiellement le projet PrimTux ?
+A. Le ministère de l’Intérieur
+✅ B. La Direction du numérique pour l’éducation (DNE)
+C. La Commission européenne
+D. L’UNESCO
+
+Quel est l’un des bénéfices écologiques de l’utilisation de Linux dans les établissements scolaires ?
+A. Augmenter la consommation énergétique
+B. Accélérer le renouvellement du matériel
+✅ C. Réduire les déchets électroniques
+D. Favoriser l’obsolescence rapide
