@@ -1,8 +1,8 @@
 
-var url = new URL("http://foo.bar/?x=1&y=2");
-var params = new URLSearchParams(window.location.search);
+const queryString = window.location.search;
+var urlParams = new URLSearchParams(queryString);
 //var id_quiz = params.get("id_quiz");
-var id_question = params.get("id_question");
+var id_question = urlParams.get("id_question");
 
 function create(tag, container, text=null) {
     const element = document.createElement(tag);
@@ -11,5 +11,10 @@ function create(tag, container, text=null) {
     return element;
 }
 
-let bouton_suivant = document.querySelector(".bt_suivant");
+let exemple_id_question = 1;
 
+let bouton_suivant = document.querySelector(".bt_suivant");
+bouton_suivant.addEventListener("click", function() {
+    exemple_id_question = parseInt(id_question) + 1;
+    window.location.href = "qcm.html?id_quiz=1&id_question=" + exemple_id_question;
+});
