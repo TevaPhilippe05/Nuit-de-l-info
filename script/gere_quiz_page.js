@@ -11,10 +11,17 @@ function create(tag, container, text=null) {
     return element;
 }
 
-let exemple_id_question = 1;
 
 let bouton_suivant = document.querySelector(".bt_suivant");
 bouton_suivant.addEventListener("click", function() {
     exemple_id_question += 1; // mettre du get
     window.location.href = "qcm.html?id_question=" + exemple_id_question;
 });
+
+
+let choix_1 = document.querySelector("#rep1");
+let choix_2 = document.querySelector("#rep2");
+let choix_3 = document.querySelector("#rep3");
+let choix_4 = document.querySelector("#rep4");
+
+
