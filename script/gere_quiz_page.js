@@ -1,17 +1,16 @@
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
-let id_question = parseInt(urlParams.get("id_question")) || 1; // ID de la question actuelle
+let id_question = parseInt(urlParams.get("id_question")) || 0; // ID de la question actuelle
 const reponsesContainer = document.querySelector(".reponses");
 const questionTitre = document.querySelector(".question");
 const resultatDiv = document.querySelector(".resultat");
 const boutonSuivant = document.querySelector(".bt_suivant");
 const imageQuestion = document.querySelector("#img_question");
+const resTitre = document.querySelector(".resultat-titre");
 let reponseSelectionee = false;
 let reponseBloquee = false; 
 
-
-let questionActuelle = null; 
 
 function create(tag, container, text=null) {
     const element = document.createElement(tag);
@@ -24,12 +23,37 @@ function create(tag, container, text=null) {
     return element;
 }
 
+let descriptionQuiz = document.querySelector(".description-quiz");
+
+function presenterQuiz() {
+    if (id_question === 0) {
+        questionTitre.innerText = "Bienvenue au quiz sur le logiciel libre !";
+        resTitre.style.display = "none";
+        descriptionQuiz.style.display = "block";
+        
+        reponsesContainer.innerHTML = "<p>Cliquez sur 'Commencer' pour débuter le quiz.</p>";
+        boutonSuivant.innerText = "Commencer";
+        boutonSuivant.addEventListener("click", () => {
+            id_question = 1; 
+            window.location.href = `jeu-quiz.php?id_question=${id_question}`;
+        });
+    }
+}
+
+let questionActuelle = null; 
+
+
+
 
 /**
  * Charge les données de la question depuis le serveur et les affiche.
  * @param {number} id La question à charger.
  */
 function afficherQuestion(id) {
+    descriptionQuiz.setAttribute('hidden', '');
+    //resTitre.style.display = "block";
+    //descriptionQuiz.style.display = "none";
+
     fetch(`lib/question_json.php?id_question=${id}`)
         .then(response => response.json())
         .then(data => {
@@ -61,7 +85,8 @@ function afficherQuestion(id) {
  */
 function afficherReponses(reponses) {
     reponsesContainer.innerHTML = '';
-    resultatDiv.setAttribute('hidden', ''); 
+    resultatDiv.setAttribute('hidden', '');
+
     resultatDiv.innerHTML = '';
     reponseBloquee = false;
 
@@ -128,7 +153,7 @@ function verifierReponse(bouton, reponse) {
  * Passe à la question suivante.
  */
 function gererQuestionSuivante() {
-    if (!reponseBloquee) {
+    if (!reponseBloquee && id_question !== 0) {
         alert("Veuillez sélectionner une réponse avant de continuer.");
         return;
     }
@@ -139,4 +164,12 @@ function gererQuestionSuivante() {
 
 boutonSuivant.addEventListener("click", gererQuestionSuivante);
 
-afficherQuestion(id_question);
+//afficherQuestion(id_question);
+
+if (id_question === 0) {
+    presenterQuiz();
+} else {
+    
+    afficherQuestion(id_question);
+}
+
