@@ -14,7 +14,9 @@
 
 <main>
     <div class="button-container">
-        <button>Le Jeu (The Game)</button>
+         <a href="page-choix-jeux.php">
+            <button>Le Jeu (The Game)</button>
+         </a>
         <button>Forum Communautaire</button>
     </div>
     <section>
