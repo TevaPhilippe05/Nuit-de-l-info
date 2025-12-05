@@ -87,12 +87,12 @@ header *{
 }
 
 .titre_header:hover {
-    background-color: #2A78FF;
+    background-color: #7aa1e3;
 }
 
 .titre_header:hover p {
     color: #FFFFFF;
-    background-color: #2A78FF;
+    background-color: #7aa1e3;
 }
 header img {
     max-height: 100px;
