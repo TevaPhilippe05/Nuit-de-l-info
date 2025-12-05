@@ -11,7 +11,7 @@
 <header>
     <div id="barre_header">
         <div id="sous_barre_header">
-            <a href="../forum.php">
+            <a href="../index.php">
                 <img src="../imgs/logo.png" alt="logo">
             </a>
             <a href="forum.php" class="titre_header">
@@ -20,7 +20,7 @@
             <div style="width: 40vw;"></div>
         </div>
 
-        <a id="img_profil" href="TODO"><img src="../imgs/profil.png" alt="img profil"></a>
+        <a id="img_profil" href=""><img src="../imgs/profil.png" alt="img profil"></a>
 
     </div>
 </header>
