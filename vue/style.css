@@ -1,13 +1,3 @@
-:root {
-    --primary-color: #0056b3;
-    --secondary-color: #38761d;
-    --text-color: #333;
-    --background-color: #f8f9fa;
-    --card-background: #ffffff;
-    --border-color: #dee2e6; 
-}
-
-
 @font-face {
     font-family: 'pixel';
     src: url('fonts/OpenSans-Bold.ttf') format('truetype');
@@ -37,8 +27,7 @@ header {
     height: 120px;
     z-index: 10;
     padding: 0 20px;
-    background-color: var(--primary-color);
-    color : var(--secondary-color);
+    background-color: #CEE0FF;
 }
 
 header *{
@@ -87,12 +76,12 @@ header *{
 }
 
 .titre_header:hover {
-    background-color: #7aa1e3;
+    background-color: #2A78FF;
 }
 
 .titre_header:hover p {
     color: #FFFFFF;
-    background-color: #7aa1e3;
+    background-color: #2A78FF;
 }
 header img {
     max-height: 100px;
@@ -152,6 +141,10 @@ header input {
 
 /*//////////////////////////// FORUM ////////////////////////////*/
 
+.logiciels-container{
+    display: flex;
+}
+
 .app-card {
     width: 200px;
     height: 240px;
@@ -180,6 +173,31 @@ header input {
 .app-nom {
     text-align: center;
     background-color: #fafafa;
+}
+
+#bouton-nouvelle-alt {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    background-color: #CEE0FF;
+    padding: 16px;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    transition: transform 1s ease;
+}
+
+#plus-bouton-new-alt {
+    background-color: #CEE0FF;
+    font-size: 32px;
+}
+
+#bouton-nouvelle-alt:hover{
+    transform: scale(1.04);
+    cursor: pointer;
 }
 
 /*//////////////////////////////// FIN FORMULAIRE /////////////////////////////*/
