@@ -17,7 +17,7 @@ $logiciels = getAllLogiciels($conn);
     <header>
         <div id="barre_header">
             <div id="sous_barre_header">
-                <a href="index.php">
+                <a href="../index.php">
                     <img src="../imgs/logo.png" alt="logo">
                 </a>
                 <a href="forum.php" class="titre_header">
