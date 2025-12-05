@@ -39,7 +39,7 @@ p {
     
 }
 .question::before {
-    content: "user-jeune-apprenti@quiz-cli:~# "; /* Invite de commande */
+    content: "user@quiz-cli:~# "; /* Invite de commande */
     color: var(--terminal-accent);
 }
 
@@ -51,7 +51,6 @@ p {
     gap: 8px; 
 }
 
-/* Boutons de réponse (chaque ligne est une commande/option) */
 .reponses > div {
     
     border: none; 
@@ -61,13 +60,12 @@ p {
     
 }
 
-/* Effet survol pour les réponses */
+/* Effet survol pour les rép */
 .reponses > div:hover {
     background-color: var(--terminal-accent);
     color: var(--terminal-bg);
 }
 
-/* Styles pour les réponses sélectionnées/vérifiées */
 .reponse-correcte {
     background-color: var(--terminal-accent) !important;
     color: var(--terminal-bg) !important;
@@ -86,7 +84,6 @@ p {
 }
 
 
-/* Affichage du résultat et de l'explication */
 .resultat {
     
     margin-top: 20px;

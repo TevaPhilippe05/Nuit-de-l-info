@@ -27,7 +27,7 @@ let descriptionQuiz = document.querySelector(".description-quiz");
 
 function presenterQuiz() {
     if (id_question === 0) {
-        questionTitre.innerText = "Bienvenue au quiz sur le logiciel libre !";
+        questionTitre.innerText = "canard/quiz.sh : Bienvenue au quiz sur le logiciel libre !";
         resTitre.style.display = "none";
         descriptionQuiz.style.display = "block";
         
@@ -45,10 +45,7 @@ let questionActuelle = null;
 
 
 
-/**
- * Charge les données de la question depuis le serveur et les affiche.
- * @param {number} id La question à charger.
- */
+
 function afficherQuestion(id) {
     descriptionQuiz.setAttribute('hidden', '');
     //resTitre.style.display = "block";
@@ -59,6 +56,7 @@ function afficherQuestion(id) {
         .then(data => {
             if (data.error) {
                 questionTitre.innerText = "Fin du quiz !";
+                afficherMessageFinQuiz();
                 reponsesContainer.innerHTML = "";
                 boutonSuivant.removeEventListener('click', gererQuestionSuivante);
                 boutonSuivant.innerText = "Revenir au site";
@@ -79,10 +77,7 @@ function afficherQuestion(id) {
         .catch(error => console.error("Erreur de chargement :", error));
 }
 
-/**
- * Affiche les boutons de réponse pour la question actuelle.
- * @param {Array<Object>} reponses Liste des objets réponse.
- */
+
 function afficherReponses(reponses) {
     reponsesContainer.innerHTML = '';
     resultatDiv.setAttribute('hidden', '');
@@ -97,17 +92,13 @@ function afficherReponses(reponses) {
         bouton.dataset.idReponse = rep.id;
         bouton.dataset.estVrai = rep.estVrai; 
 
-        bouton.addEventListener('click', () => verifierReponse(bouton, rep));
+        bouton.addEventListener('click', () => { resTitre.removeAttribute('hidden');  verifierReponse(bouton, rep); });
         reponsesContainer.appendChild(bouton);
     });
 }
 
 
-/**
- * Vérifie la réponse sélectionnée et affiche le résultat/l'explication.
- * @param {HTMLElement} bouton L'élément HTML du bouton cliqué.
- * @param {Object} reponse L'objet réponse correspondant.
- */
+
 function verifierReponse(bouton, reponse) {
     if (reponseBloquee){
         return; 
@@ -149,9 +140,6 @@ function verifierReponse(bouton, reponse) {
     });
 }
 
-/**
- * Passe à la question suivante.
- */
 function gererQuestionSuivante() {
     if (!reponseBloquee && id_question !== 0) {
         alert("Veuillez sélectionner une réponse avant de continuer.");
@@ -166,9 +154,20 @@ boutonSuivant.addEventListener("click", gererQuestionSuivante);
 
 //afficherQuestion(id_question);
 
+function afficherMessageFinQuiz() {
+    document.querySelector(".msg-fin").removeAttribute("hidden");
+}
+
 if (id_question === 0) {
     presenterQuiz();
-} else {
+
+
+} 
+//else if(id_question === 11){
+    //afficherMessageFinQuiz();
+//}
+
+else {
     
     afficherQuestion(id_question);
 }
