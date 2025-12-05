@@ -1,7 +1,7 @@
 <?php
 
     // faire une connexion a la bdd 
-    $conn = mysqli_connect("localhost", "root", "root", "quiz");
+    $conn = mysqli_connect("localhost", "root", "ubuntu54.38.0.127", "ndi");
     mysqli_set_charset($conn, "utf8");
 
     function GetQuestions($conn)
