@@ -2,37 +2,34 @@
 require 'db.php';
 
 // CREATE
-function createLogiciel($nom, $img, $description, $lien) {
-    global $pdo;
-    $sql = "INSERT INTO logiciel (nom, img, description, lien) VALUES (?, ?, ?, ?)";
-    $pdo->prepare($sql)->execute([$nom, $img, $description, $lien]);
+function createLogiciel($conn,$nom, $img, $description, $lien) {
+    $sql = "INSERT INTO logiciel (nom, img, description, lien) VALUES ('$nom', '$img', '$description', '$lien')";
+    mysqli_query($conn, $sql);
 }
 
 // READ
-function getLogiciel($id) {
-    global $pdo;
-    $stmt = $pdo->prepare("SELECT * FROM logiciel WHERE id=?");
-    $stmt->execute([$id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+function getLogiciel($conn,$id) {
+    $sql = "SELECT * FROM logiciel WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_assoc($result);
 }
 
 // READ ALL
-function getAllLogiciels() {
-    global $pdo;
-    return $pdo->query("SELECT * FROM logiciel")->fetchAll(PDO::FETCH_ASSOC);
+function getAllLogiciels($conn) {
+    $sql = "SELECT * FROM logiciel";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
 // UPDATE
-function updateLogiciel($id, $nom, $img, $description, $lien) {
-    global $pdo;
-    $sql = "UPDATE logiciel SET nom=?, img=?, description=?, lien=? WHERE id=?";
-    $pdo->prepare($sql)->execute([$nom, $img, $description, $lien, $id]);
+function updateLogiciel($conn,$id, $nom, $img, $description, $lien) {
+    $sql = "UPDATE logiciel SET nom='$nom', img='$img', description='$description', lien='$lien' WHERE id=$id";
+    mysqli_query($conn, $sql);
 }
 
 // DELETE
-function deleteLogiciel($id) {
-    global $pdo;
-    $sql = "DELETE FROM logiciel WHERE id=?";
-    $pdo->prepare($sql)->execute([$id]);
+function deleteLogiciel($conn,$id) {
+    $sql = "DELETE FROM logiciel WHERE id=$id";
+    mysqli_query($conn, $sql);
 }
 ?>

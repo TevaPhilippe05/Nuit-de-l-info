@@ -2,30 +2,29 @@
 require 'db.php';
 
 // CREATE
-function addVote($id_user, $id_logiciel) {
-    global $pdo;
-    $sql = "INSERT INTO vote (id_user, id_logiciel) VALUES (?, ?)";
-    $pdo->prepare($sql)->execute([$id_user, $id_logiciel]);
+function addVote($conn,$id_user, $id_logiciel) {
+    $sql = "INSERT INTO vote (id_user, id_logiciel) VALUES ($id_user, $id_logiciel)";
+    mysqli_query($conn, $sql);
+    return mysqli_insert_id($conn);
 }
 
 // READ
-function getVote($id_user, $id_logiciel) {
-    global $pdo;
-    $stmt = $pdo->prepare("SELECT * FROM vote WHERE id_user=? AND id_logiciel=?");
-    $stmt->execute([$id_user, $id_logiciel]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+function getVote($conn,$id_user, $id_logiciel) {
+    $sql = "SELECT * FROM vote WHERE id_user=$id_user AND id_logiciel=$id_logiciel";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_assoc($result);
 }
 
 // READ ALL
-function getAllVotes() {
-    global $pdo;
-    return $pdo->query("SELECT * FROM vote")->fetchAll(PDO::FETCH_ASSOC);
+function getAllVotes($conn) {
+    $sql = "SELECT * FROM vote";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
 // DELETE
-function deleteVote($id_user, $id_logiciel) {
-    global $pdo;
-    $sql = "DELETE FROM vote WHERE id_user=? AND id_logiciel=?";
-    $pdo->prepare($sql)->execute([$id_user, $id_logiciel]);
+function deleteVote($conn,$id_user, $id_logiciel) {
+    $sql = "DELETE FROM vote WHERE id_user=$id_user AND id_logiciel=$id_logiciel";
+    mysqli_query($conn, $sql);
 }
 ?>
