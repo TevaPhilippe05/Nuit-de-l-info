@@ -1,4 +1,11 @@
+@font-face{
+    font-family: 'opensans';
+    src: url('/font/OpenSans-Bold.ttf');
+}
 
+*{
+    font-family: 'opensans', sans-serif;
+}
 
 .titre{
     display: flex;

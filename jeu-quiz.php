@@ -6,14 +6,14 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="style/page-qcm.css">
     <style>
-        /* Ajoutez ce CSS pour styliser les réponses après vérification */
+        
         .reponse-correcte {
-            background-color: #a8e8a8 !important; /* Vert clair */
+            background-color: #a8e8a8 !important; 
             border: 2px solid green;
-            cursor: default; /* Change le curseur */
+            cursor: default; 
         }
         .reponse-fausse {
-            background-color: #f7a7a7 !important; /* Rouge clair */
+            background-color: #f7a7a7 !important; 
             border: 2px solid red;
         }
         .resultat.visible {
@@ -36,7 +36,8 @@
     <h2 class="resultat-titre">Résultat :</h2>
 
     <div class="resultat" hidden>
-        </div>
+        
+    </div>
 
     <div class="bt_suivant">Suivant</div>
 

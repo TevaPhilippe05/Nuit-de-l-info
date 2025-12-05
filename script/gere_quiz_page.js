@@ -13,6 +13,18 @@ let reponseBloquee = false;
 
 let questionActuelle = null; 
 
+function create(tag, container, text=null) {
+    const element = document.createElement(tag);
+    if (tag === "img") {
+        element.src = "img/tux-linux-penguin.gif";
+        element.alt = "linux-penguin";
+    }
+    element.innerText = text;
+    container.appendChild(element);
+    return element;
+}
+
+
 /**
  * Charge les données de la question depuis le serveur et les affiche.
  * @param {number} id La question à charger.
@@ -25,8 +37,8 @@ function afficherQuestion(id) {
                 questionTitre.innerText = "Fin du quiz !";
                 reponsesContainer.innerHTML = "";
                 boutonSuivant.removeEventListener('click', gererQuestionSuivante);
-                boutonSuivant.innerText = "Recommencer";
-                boutonSuivant.addEventListener('click', () => window.location.href = "jeu-quiz.php?id_question=1");
+                boutonSuivant.innerText = "Revenir au site";
+                boutonSuivant.addEventListener('click', () => window.location.href = "index.html");
                 return;
             }
 
@@ -65,26 +77,32 @@ function afficherReponses(reponses) {
     });
 }
 
+
 /**
  * Vérifie la réponse sélectionnée et affiche le résultat/l'explication.
  * @param {HTMLElement} bouton L'élément HTML du bouton cliqué.
  * @param {Object} reponse L'objet réponse correspondant.
  */
 function verifierReponse(bouton, reponse) {
-    if (reponseBloquee) return; 
+    if (reponseBloquee){
+        return; 
+    }
 
     reponseBloquee = true;
     const estCorrect = parseInt(reponse.estVrai) === 1;
 
     
     resultatDiv.removeAttribute('hidden');
+    create("img", resultatDiv);
 
     if (estCorrect) {
         bouton.classList.add('reponse-correcte');
-        resultatDiv.innerHTML = `<strong>Bonne réponse !</strong>`;
+        
+        resultatDiv.innerHTML = `<p>Bonne réponse !</p>`;
     } else {
         bouton.classList.add('reponse-fausse');
-        resultatDiv.innerHTML = `<strong>Mauvaise réponse !</strong>`;
+        
+        resultatDiv.innerHTML = `<p>Mauvaise réponse !</p>`;
 
         
         const tousLesBoutons = reponsesContainer.querySelectorAll('.bt_reponse');
@@ -95,12 +113,12 @@ function verifierReponse(bouton, reponse) {
         });
     }
 
-    // Ajout de l'explication
+    
     if (questionActuelle.explication) {
         resultatDiv.innerHTML += `<br><p id="contexte"><strong>Explication :</strong> ${questionActuelle.explication}</p>`;
     }
 
-    // Désactive les clics sur tous les boutons de réponse après la vérification
+
     reponsesContainer.querySelectorAll('.bt_reponse').forEach(btn => {
         btn.style.pointerEvents = 'none';
     });
@@ -114,12 +132,11 @@ function gererQuestionSuivante() {
         alert("Veuillez sélectionner une réponse avant de continuer.");
         return;
     }
-    // Incrémente l'ID et recharge la page pour le nouvel ID
+    
     id_question += 1; 
     window.location.href = `jeu-quiz.php?id_question=${id_question}`;
 }
 
 boutonSuivant.addEventListener("click", gererQuestionSuivante);
 
-// Lance le quiz en affichant la première question
 afficherQuestion(id_question);
