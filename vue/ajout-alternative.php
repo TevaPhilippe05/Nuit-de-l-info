@@ -87,9 +87,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <section>
     <h1>Ajouter une nouvelle alternative</h1>
 </section>
-<div class="progression-ajout">
-    <div class="barre-ajout"></div>
-</div>
 
 <!-- FORMULAIRE UNIQUE -->
 <form action="" method="POST" enctype="multipart/form-data" id="form-ajout-alternative">
