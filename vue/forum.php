@@ -25,7 +25,7 @@ $logiciels = getAllLogiciels($conn);
                 </a>
                 <input type="text" placeholder="Rechercher un logiciel" id="searchInput">
             </div>
-            <a id="img_profil" href="TODO"><img src="../imgs/profil.png" alt="img profil"></a>
+            <a id="img_profil" href=""><img src="../imgs/profil.png" alt="img profil"></a>
         </div>
     </header>
 
