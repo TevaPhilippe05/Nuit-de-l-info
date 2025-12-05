@@ -175,6 +175,31 @@ header input {
     background-color: #fafafa;
 }
 
+#bouton-nouvelle-alt {
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    background-color: #CEE0FF;
+    padding: 16px;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    transition: transform 1s ease;
+}
+
+#plus-bouton-new-alt {
+    background-color: #CEE0FF;
+    font-size: 32px;
+}
+
+#bouton-nouvelle-alt:hover{
+    transform: scale(1.04);
+    cursor: pointer;
+}
+
 /*//////////////////////////////// FIN FORMULAIRE /////////////////////////////*/
 
 /*##########################################*/
