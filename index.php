@@ -17,7 +17,7 @@
          <a href="page-choix-jeux.php">
             <button>Le Jeu (The Game)</button>
          </a>
-         <a href="vue/db.php">
+         <a href="vue/forum.php">
             <button>Forum Communautaire</button>
          </a>
         
