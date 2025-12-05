@@ -72,10 +72,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <header>
     <div id="barre_header">
         <div id="sous_barre_header">
-            <a href="index.php">
+            <a href="forum.php">
                 <img src="../imgs/logo.png" alt="logo">
             </a>
-            <a href="index.php" class="titre_header">
+            <a href="forum.php" class="titre_header">
                 <p>NOM_SITE</p>
             </a>
             <div style="width: 40vw;"></div>
