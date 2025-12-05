@@ -137,3 +137,122 @@ header input {
 .cache-form {
     display: none;
 }
+
+/*//////////////////////////////// FIN FORMULAIRE /////////////////////////////*/
+
+/*##########################################*/
+/*page logiciel individuelle*/
+
+.premiere_partie{
+	display: flex;
+	max-width: 100%;
+}
+
+#div_img_logi{
+	width: 15%;
+	max-width: 15%;
+  	align-content: center;
+  	justify-content: center;
+  	display: flex;
+	padding: 0.5%;
+	padding-left: 0;
+}
+
+#div_titre_logi{
+	width: 51.5vw;
+}
+
+h1#titre_logi{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#div_text_logi{
+	display: flex;
+	width: 84%;
+	max-width: 85%;
+	padding: 0.5%;
+	padding-right: 0;
+	flex-direction: column;
+}
+
+#block_logi_indiv{
+	align-content: center;
+	width: 98%;
+	height: auto;
+}
+
+#img_logi {
+	display: block;
+	max-width : 100%;
+	width: 100%;
+	height : auto;
+}
+
+#text_logi{
+	display: flex;
+  	flex-direction: column;
+}
+
+#txt_descr{
+	overflow-wrap: break-word;
+  	white-space: pre-wrap;
+}
+
+#span_liens_logi{
+	display: inline-block;
+	max-width: 50%;
+}
+
+.p_lien_logi{
+	color: #2A78FF;
+	display: inline-block;
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+  	max-width: 100%;
+}
+
+.p_lien_logi:hover{
+	color: #0743bb;
+	text-decoration: underline;
+}
+
+
+#div_logi_assoc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.alt_item {
+    text-decoration: none;
+    color: inherit;
+}
+
+.alt_card {
+    width: 150px;
+    padding: 12px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.alt_card:hover {
+    transform: scale(1.05);
+}
+
+.alt_img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.alt_nom {
+    font-weight: bold;
+    margin-top: 8px;
+}
+/*fin page d'logi individuelle*/
+/*##########################################*/

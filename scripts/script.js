@@ -13,6 +13,7 @@ const new_form_alt = document.querySelector("#new-form-alt");
 const btn_sel_conf_alt = document.querySelector("#btn-sel-conf-alt");
 const btn_new_conf_alt = document.querySelector("#btn-new-conf-alt");
 const btn_add_alt = document.querySelector("#btn-add-alt");
+const opt_app_form = document.querySelector("#app");
 
 const barre_progression = document.querySelector(".progression-ajout .barre-ajout");
 
@@ -42,3 +43,5 @@ btn_add_alt.addEventListener("click", function() {
     txt_form_alt.classList.add("cache-form");
     new_form_alt.classList.remove("cache-form");
 });
+
+

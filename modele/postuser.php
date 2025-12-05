@@ -29,4 +29,19 @@ function deletePostUser($conn,$id_logiciel, $id_user) {
     $sql = "DELETE FROM postuser WHERE id_logiciel=$id_logiciel AND id_user=$id_user";
     mysqli_query($conn, $sql);
 }
+
+
+
+function getAlternativesForLogiciel($conn, $id_logiciel) {
+    $sql = "
+        SELECT l.*
+        FROM logiciels_associes a
+        JOIN logiciel l ON l.id = a.id_associe
+        WHERE a.id_logiciel = $id_logiciel
+    ";
+
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
 ?>

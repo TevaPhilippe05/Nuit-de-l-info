@@ -27,4 +27,16 @@ function deleteLogicielAssocie($conn,$id_logiciel, $id_associe) {
     $sql = "DELETE FROM logiciels_associes WHERE id_logiciel=$id_logiciel AND id_associe=$id_associe";
     mysqli_query($conn, $sql);
 }
+
+function getAlternativesForLogiciel($conn, $id_logiciel) {
+    $sql = "
+        SELECT l.*
+        FROM logiciels_associes a
+        JOIN logiciel l ON l.id = a.id_associe
+        WHERE a.id_logiciel = $id_logiciel
+    ";
+
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
 ?>
