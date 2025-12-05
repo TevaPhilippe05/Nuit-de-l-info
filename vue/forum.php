@@ -41,6 +41,10 @@ $logiciels = getAllLogiciels($conn);
         <?php endforeach; ?>
     </main>
 
+    <button id="bouton-nouvelle-alt" type="button" onclick="location.href = './ajout-alternative.php'">
+        <span id="plus-bouton-new-alt">+</span>Ajouter une alternative
+    </button>
+
     
     <script>
         // Recherche instantanée
