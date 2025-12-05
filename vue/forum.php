@@ -21,7 +21,7 @@ $logiciels = getAllLogiciels($conn);
                     <img src="../imgs/logo.png" alt="logo">
                 </a>
                 <a href="index.php" class="titre_header">
-                    <p>NOM_SITE</p>
+                    <p>FORUM</p>
                 </a>
                 <input type="text" placeholder="Rechercher un logiciel" id="searchInput">
             </div>
