@@ -30,6 +30,10 @@ const GAFAM_IMAGES = [
   "img/microsoft.png"
 ];
 
+// gif de fond
+let backgroundImage = new Image();
+backgroundImage.src = "img/tux-linux-penguin.gif";
+
 
 // Score initial
 let score = 0;
@@ -125,9 +129,12 @@ function collisionWithBody(head, body) {
  * Fonction principale qui dessine et met à jour l'état du jeu
  */
 function drawGame() {
-  // 1. Efface le canvas (toute la zone de dessin)
+  // 1. Dessin du fond animé
   ctx.clearRect(0, 0, width, height);
 
+  if (backgroundImage.complete) {
+    ctx.drawImage(backgroundImage, 0, 0, width, height);
+  }
   // 2. Dessiner la nourriture
   drawBoxImage(food.x, food.y,);
 
