@@ -2,9 +2,23 @@
 require 'db.php';
 
 // CREATE
-function createLogiciel($conn,$nom, $img, $description, $lien) {
-    $sql = "INSERT INTO logiciel (nom, img, description, lien) VALUES ('$nom', '$img', '$description', '$lien')";
-    mysqli_query($conn, $sql);
+function createLogiciel($conn, $nom, $img, $description, $lien) {
+
+    $stmt = mysqli_prepare($conn,
+        "INSERT INTO logiciel (nom, img, description, lien) VALUES (?, ?, ?, ?)"
+    );
+
+    // "b" = blob, "s" = string
+    mysqli_stmt_bind_param($stmt, "bsss", $nom, $img, $description, $lien);
+
+    // Envoie du blob
+    if ($img !== null) {
+        mysqli_stmt_send_long_data($stmt, 1, $img);
+    }
+
+    mysqli_stmt_execute($stmt);
+
+    return mysqli_insert_id($conn);
 }
 
 // READ
@@ -23,13 +37,16 @@ function getAllLogiciels($conn) {
 
 // UPDATE
 function updateLogiciel($conn,$id, $nom, $img, $description, $lien) {
-    $sql = "UPDATE logiciel SET nom='$nom', img='$img', description='$description', lien='$lien' WHERE id=$id";
-    mysqli_query($conn, $sql);
+    $stmt = mysqli_prepare($conn,
+        "UPDATE logiciel SET nom=?, img=?, description=?, lien=? WHERE id=?"
+    );
+    mysqli_stmt_bind_param($stmt, "bsssi", $nom, $img, $description, $lien, $id);
+    mysqli_stmt_send_long_data($stmt, 1, $img);
+    mysqli_stmt_execute($stmt);
 }
 
 // DELETE
 function deleteLogiciel($conn,$id) {
-    $sql = "DELETE FROM logiciel WHERE id=$id";
-    mysqli_query($conn, $sql);
+    mysqli_query($conn, "DELETE FROM logiciel WHERE id=$id");
 }
 ?>

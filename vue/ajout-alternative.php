@@ -1,5 +1,68 @@
+<?php
+require '../modele/db.php';
+require '../modele/crudlogiciel.php';
+require '../modele/crudlogicielassoc.php';
+
+// Récupérer tous les logiciels pour remplir les select
+$logiciels = getAllLogiciels($conn);
+
+
+function getUploadedImage($fileField) {
+    if (!isset($_FILES[$fileField]) || $_FILES[$fileField]['error'] !== 0) {
+        return null;
+    }
+    return file_get_contents($_FILES[$fileField]['tmp_name']);
+}
+// Traitement du formulaire
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    /* ===== LOGICIEL PRINCIPAL ===== */
+
+    if (!empty($_POST['app'])) {
+        $id_logiciel = (int)$_POST['app'];
+    } 
+    elseif (!empty($_POST['nom-app'])) {
+        $nom = $_POST['nom-app'];
+        $img = getUploadedImage("logo-app");
+        $desc = $_POST['description-app'] ?? '';
+        $lien = $_POST['site-app'] ?? '';
+
+        $id_logiciel = createLogiciel($conn, $nom, $img, $desc, $lien);
+    } 
+    else {
+        die("Logiciel principal non défini.");
+    }
+
+
+    /* ===== ALTERNATIVE ===== */
+
+    if (!empty($_POST['app-alt'])) {
+        $id_alt = (int)$_POST['app-alt'];
+    } 
+    elseif (!empty($_POST['nom-alt'])) {
+        $nom = $_POST['nom-alt'];
+        $img = getUploadedImage("logo-alt");
+        $desc = $_POST['description-alt'] ?? '';
+        $lien = $_POST['site-alt'] ?? '';
+
+        $id_alt = createLogiciel($conn, $nom, $img, $desc, $lien);
+    } 
+    else {
+        die("Alternative non définie.");
+    }
+
+
+    /* ===== ASSOCIATION ===== */
+
+    addLogicielAssocie($conn, $id_logiciel, $id_alt);
+
+    header("Location: logiciel.php?id=$id_logiciel");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,75 +72,65 @@
 <header>
     <div id="barre_header">
         <div id="sous_barre_header">
-            <a href="index.php">
-                <img src="../imgs/logo.png" alt="logo">
-            </a>
-            <a href="index.php" class="titre_header">
-                <p>NOM_SITE</p>
-            </a>
+            <a href="index.php"><img src="../imgs/logo.png" alt="logo"></a>
+            <a href="index.php" class="titre_header"><p>NOM_SITE</p></a>
             <div style="width: 40vw;"></div>
         </div>
-
         <a id="img_profil" href="TODO"><img src="../imgs/profil.png" alt="img profil"></a>
-
     </div>
 </header>
 <body>
-    <section>
-        <h1>Ajouter une nouvelle alternative</h1>
-    </section>
-    <div class="progression-ajout">
-        <div class="barre-ajout"></div>
-    </div>
-    <form id="sel-form-app" action="" method="POST">
-        <fieldset class="champ-form-ajout">
-            <legend>Application à remplacer</legend>
-            <div>
-                <label for="app">Choisissez une application : </label>
-                <select name="app" id="app">
-                    <option value="windows">Windows</option>
-                </select>
-            </div>
-            <button id="btn-sel-conf-app" type="button">Confirmer</button>
-        </fieldset>
-    </form>
-    <p id="txt-form-app">L'application n'est pas référencée sur le site ? <button id="btn-add-app">Ajoutez-la !</button></p>
-    <form id="new-form-app" class="cache-form" action="" method="POST">
-        <fieldset class="champ-form-ajout">
-            <legend>Application à remplacer</legend>
-            <p><label for="nom-app">Nom : </label><input type="text" name="nom-app" id="nom-app" placeholder="Windows" required></p>
-            <p><label for="logo-app">Logo : </label><input type="file" name="logo-app" id="logo-app"></p>
-            <p><label for="description-app">Description : </label><textarea name="description-app" id="description-app" placeholder="Un système d'exploitation"></textarea></p>
-            <p><label for="site-app">Site : </label><input type="url" name="site-app" id="site-app" placeholder="https://www.microsoft.com/en-us/windows/"></p>
-            <button id="btn-new-conf-app" type="submit">Confirmer</button>
-        </fieldset>
-    </form>
-    <form id="sel-form-alt" class="cache-form" action="" method="POST">
-        <fieldset class="champ-form-ajout">
-            <legend>Alternative open-source</legend>
-            <div>
-                <label for="app">Choisissez une alternative : </label>
-                <select name="app" id="app">
-                    <option value="Debian">Debian</option>
-                </select>
-            </div>
-            <button id="btn-sel-conf-alt" type="button">Confirmer</button>
-        </fieldset>
-    </form>
-    <p id="txt-form-alt" class="cache-form">L'alternative n'est pas référencée sur le site ? <button id="btn-add-alt">Ajoutez-la !</button></p>
-    <form id="new-form-alt" class="cache-form" action="" method="POST">
-        <fieldset class="champ-form-ajout">
-            <legend>Alternative open-source</legend>
-            <p><label for="nom-alt">Nom : </label><input type="text" name="nom-alt" id="nom-alt" placeholder="Debian"></p>
-            <p><label for="logo-alt">Logo : </label><input type="file" name="logo-alt" id="logo-alt"></p>
-            <p><label for="description-alt">Description : </label><textarea name="description-alt" id="description-app" placeholder="Un système d'exploitation open-source"></textarea></p>
-            <p><label for="site-alt">Site : </label><input type="url" name="site-alt" id="site-alt" placeholder="https://www.debian.org/"></p>
-            <button id="btn-new-conf-alt" type="submit">Confirmer</button>
-        </fieldset>
-    </form>
-    <script type="text/javascript" src="../scripts/script.js"></script>
+<section>
+    <h1>Ajouter une nouvelle alternative</h1>
+</section>
+<div class="progression-ajout">
+    <div class="barre-ajout"></div>
+</div>
+
+<!-- FORMULAIRE UNIQUE -->
+<form action="" method="POST" enctype="multipart/form-data" id="form-ajout-alternative">
+
+    <!-- Logiciel principal -->
+    <fieldset class="champ-form-ajout">
+        <legend>Application à remplacer</legend>
+
+        <label for="app">Choisissez une application existante :</label>
+        <select name="app" id="app">
+            <option value="">-- Aucun --</option>
+            <?php foreach ($logiciels as $l): ?>
+                <option value="<?= $l['id'] ?>"><?= htmlspecialchars($l['nom']) ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <p>Ou créez un nouveau logiciel :</p>
+        <input type="text" name="nom-app" placeholder="Nom du logiciel">
+        <input type="file" name="logo-app">
+        <textarea name="description-app" placeholder="Description du logiciel"></textarea>
+        <input type="url" name="site-app" placeholder="Lien du logiciel">
+    </fieldset>
+
+    <!-- Alternative -->
+    <fieldset class="champ-form-ajout">
+        <legend>Alternative open-source</legend>
+
+        <label for="app-alt">Choisissez une alternative existante :</label>
+        <select name="app-alt" id="app-alt">
+            <option value="">-- Aucun --</option>
+            <?php foreach ($logiciels as $l): ?>
+                <option value="<?= $l['id'] ?>"><?= htmlspecialchars($l['nom']) ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <p>Ou créez une nouvelle alternative :</p>
+        <input type="text" name="nom-alt" placeholder="Nom de l’alternative">
+        <input type="file" name="logo-alt">
+        <textarea name="description-alt" placeholder="Description de l’alternative"></textarea>
+        <input type="url" name="site-alt" placeholder="Lien de l’alternative">
+    </fieldset>
+
+    <button type="submit">Ajouter l’alternative</button>
+</form>
+
+<script type="text/javascript" src="../scripts/script.js"></script>
 </body>
 </html>
-
-<?php
-require '../modele/db.php';
