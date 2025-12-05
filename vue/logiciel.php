@@ -11,11 +11,7 @@
 <header>
     <div id="barre_header">
         <div id="sous_barre_header">
-<<<<<<< HEAD
-            <a href="../forum.php">
-=======
             <a href="../index.php">
->>>>>>> forum
                 <img src="../imgs/logo.png" alt="logo">
             </a>
             <a href="forum.php" class="titre_header">
