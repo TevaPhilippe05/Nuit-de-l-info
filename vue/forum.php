@@ -25,7 +25,10 @@
 </header>
 
 <body>
-
+    <div class="app-card">
+        <div class="app-logo"><img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/91d52475-1788-4638-a5aa-d1eefcde9419/dgh683s-3b410b34-33b9-4265-a776-72aeea824000.png/v1/fill/w_903,h_885/windows_11_logo_by_robertkim092_dgh683s-pre.png" alt="Windows"></div>
+        <div class="app-nom">Windows</div>
+    </div>
 </body>
 
 </html>
