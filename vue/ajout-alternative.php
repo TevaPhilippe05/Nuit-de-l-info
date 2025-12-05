@@ -13,7 +13,7 @@
                 <img src="../imgs/logo.png" alt="logo">
             </a>
             <a href="index.php" class="titre_header">
-                <p>NOM_SITE</p>
+                <p>FORUM</p>
             </a>
             <div style="width: 40vw;"></div>
         </div>
