@@ -60,7 +60,7 @@ function afficherQuestion(id) {
                 reponsesContainer.innerHTML = "";
                 boutonSuivant.removeEventListener('click', gererQuestionSuivante);
                 boutonSuivant.innerText = "Revenir au site";
-                boutonSuivant.addEventListener('click', () => window.location.href = "index.html");
+                boutonSuivant.addEventListener('click', () => window.location.href = "page-choix-jeux.php");
                 return;
             }
 
