@@ -116,8 +116,24 @@ header input {
 .progression-ajout .barre-ajout {
     width: 50%;
     height: 100%;
-    background: linear-gradient(45deg, #adffad, #8adb83);
+    background: linear-gradient(45deg, #b1bdf1, #9a83db);
     transition: width 0.5s ease;
 }
 
+.champ-form-ajout {
+    padding: 1em;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 4px #5755b8 solid;
+    border-radius: 4px;
+}
 
+.champ-form-ajout label {
+    margin: 8px;
+}
+
+.cache-form {
+    display: none;
+}
