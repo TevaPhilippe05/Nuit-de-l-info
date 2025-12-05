@@ -1,0 +1,114 @@
+:root {
+    --primary-color: #0056b3;
+    --secondary-color: #38761d;
+    --text-color: #333;
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --border-color: #dee2e6;
+}
+
+@keyframes hov {
+    0% {transform: scale(1.00)}
+    50% {transform: scale(1.05)}
+    100% {transform: scale(1.00)}
+}
+
+@font-face {
+    font-family: 'pixel';
+    src: url("OpenSans-Bold.ttf");
+}
+
+body {
+    font-size: 1.2em;
+    font-family: 'pixel';
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* ===== HEADER ===== */
+header h2 {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
+    margin: 0;
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 700;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== MAIN ===== */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h2 {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-top: 40px;
+    font-size: 2em;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--border-color);
+    margin: 40px 0;
+}
+
+/* ✅ ===== NOUVEAUX BOUTONS BEAUX ===== */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.button-container a {
+    text-decoration: none;
+}
+
+.button-container button {
+    width: 260px;
+    height: 120px;
+    background: linear-gradient(135deg, #38761d, #4CAF50);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 1.3em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.button-container button:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 16px 26px rgba(0, 0, 0, 0.25);
+    animation: hov 1.3s infinite;
+}
+
+/* ===== LISTES ===== */
+ul {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 60px;
+    border-top: 1px solid var(--border-color);
+    color: #6c757d;
+}

@@ -1,0 +1,122 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
+
+
+
+:root {
+    --terminal-bg: #1a1a1a; 
+    --terminal-text: #00ff00; 
+    --terminal-accent: #008000; 
+    --terminal-error: #ff0000; 
+}
+
+
+
+body {
+    background-color: var(--terminal-bg);
+    color: var(--terminal-text);
+    font-family: 'Fira Code', monospace; 
+    padding: 20px;
+    line-height: 1.5;
+}
+
+
+p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* --- Styles des éléments du quiz --- */
+
+
+.question {
+    
+    text-align: left;
+    margin-bottom: 15px;
+    font-weight: bold;
+    padding: 5px 0;
+    
+}
+.question::before {
+    content: "user@quiz-cli:~# "; /* Invite de commande */
+    color: var(--terminal-accent);
+}
+
+/* Conteneur des réponses */
+.reponses {
+    flex-direction: column;
+    align-items: flex-start; 
+    padding: 0;
+    gap: 8px; 
+}
+
+.reponses > div {
+    
+    border: none; 
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.1s, color 0.1s;
+    
+}
+
+/* Effet survol pour les rép */
+.reponses > div:hover {
+    background-color: var(--terminal-accent);
+    color: var(--terminal-bg);
+}
+
+.reponse-correcte {
+    background-color: var(--terminal-accent) !important;
+    color: var(--terminal-bg) !important;
+    font-weight: bold;
+    animation: blink-success 1s 3;
+}
+.reponse-fausse {
+    color: var(--terminal-error) !important;
+    background-color: transparent !important;
+    
+    font-weight: bold;
+}
+@keyframes blink-success {
+    0%, 100% { background-color: var(--terminal-accent); }
+    50% { background-color: var(--terminal-bg); }
+}
+
+
+.resultat {
+    
+    margin-top: 20px;
+    text-align: left;
+    padding: 10px 0;
+    border-top: 1px dashed var(--terminal-accent);
+}
+.resultat p {
+    color: var(--terminal-text); 
+}
+#contexte {
+    color: #ffd700;
+    font-style: italic;
+}
+
+
+/* Bouton Suivant (simule une commande actionnable) */
+.bt_suivant {
+    margin: 20px 0 0 0; /* Aligné à gauche */
+    border: 1px solid var(--terminal-text);
+    background-color: transparent;
+    color: var(--terminal-text);
+    padding: 5px 15px;
+    width: auto;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.bt_suivant:hover {
+    background-color: var(--terminal-text);
+    color: var(--terminal-bg);
+}
+
+#img_question {
+    display: none;
+}
