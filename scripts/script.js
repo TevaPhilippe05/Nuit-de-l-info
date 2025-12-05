@@ -15,21 +15,18 @@ const btn_new_conf_alt = document.querySelector("#btn-new-conf-alt");
 const btn_add_alt = document.querySelector("#btn-add-alt");
 const opt_app_form = document.querySelector("#app");
 
-const barre_progression = document.querySelector(".progression-ajout .barre-ajout");
 
 btn_sel_conf_app.addEventListener("click", function() {
     sel_form_app.classList.add("cache-form");
     txt_form_app.classList.add("cache-form");
     sel_form_alt.classList.remove("cache-form");
     txt_form_alt.classList.remove("cache-form");
-    barre_progression.style.width = "100%"
 });
 
 btn_new_conf_app.addEventListener("click", function() {
     new_form_app.classList.add("cache-form");
     sel_form_alt.classList.remove("cache-form");
     txt_form_alt.classList.remove("cache-form");
-    barre_progression.style.width = "100%"
 });
 
 btn_add_app.addEventListener("click", function() {

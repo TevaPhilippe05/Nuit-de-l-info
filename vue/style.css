@@ -104,22 +104,6 @@ header input {
 
 /*//////////////////////////////// FORMULAIRE /////////////////////////////*/
 
-.progression-ajout {
-    width: 400px;
-    height: 20px;
-    background: #b5bac0;
-    border-radius: 10px;
-    margin : 10px auto 10px auto;
-    overflow: hidden;
-}
-
-.progression-ajout .barre-ajout {
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(45deg, #b1bdf1, #9a83db);
-    transition: width 0.5s ease;
-}
-
 .champ-form-ajout {
     padding: 1em;
     margin: 1em;
