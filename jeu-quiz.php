@@ -38,9 +38,7 @@
     <div class="reponses">
         </div>
 
-    <div class="msg-fin">
-        <p>Alors ? On kiffe toujours autant les GAFAM ? </p>
-    </div>
+    
 
     <h2 class="resultat-titre">Résultat :</h2>
 
