@@ -36,7 +36,6 @@
                 <label for="app">Choisissez une application : </label>
                 <select name="app" id="app">
                     <option value="windows">Windows</option>
-                    <!-- https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database -->
                 </select>
             </div>
             <button id="btn-sel-conf-app" type="button">Confirmer</button>
@@ -60,7 +59,6 @@
                 <label for="app">Choisissez une alternative : </label>
                 <select name="app" id="app">
                     <option value="Debian">Debian</option>
-                    <!-- https://stackoverflow.com/questions/8022353/how-to-populate-html-dropdown-list-with-values-from-database -->
                 </select>
             </div>
             <button id="btn-sel-conf-alt" type="button">Confirmer</button>
