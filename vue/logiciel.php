@@ -81,17 +81,16 @@ function html_logiciel_affichage($logiciel) {
 
 $id = $_GET["id"] ?? null;
 
-$alternatives = getAlternativesForLogiciel($conn, $id);
-
 if (!$id) {
-    echo "Aucun logiciel sélectionné.";
+    header("Location: ./forum.php");
     exit;
 }
 
+$alternatives = getAlternativesForLogiciel($conn, $id);
 $logiciel = getLogiciel($conn, $id);
 
 if (!$logiciel) {
-    echo "Logiciel introuvable.";
+    header("Location: ./forum.php");
     exit;
 }
 
