@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <img src="../imgs/logo.png" alt="logo">
             </a>
             <a href="forum.php" class="titre_header">
-                <p>NOM_SITE</p>
+                <p>FORUM</p>
             </a>
             <div style="width: 40vw;"></div>
         </div>
