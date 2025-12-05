@@ -2,30 +2,31 @@
 require 'db.php';
 
 // CREATE
-function addPostUser($id_logiciel, $id_user) {
-    global $pdo;
-    $sql = "INSERT INTO postuser (id_logiciel, id_user) VALUES (?, ?)";
-    $pdo->prepare($sql)->execute([$id_logiciel, $id_user]);
+function addPostUser($conn,$id_logiciel, $id_user) {
+    //global $pdo;
+    $sql = "INSERT INTO postuser (id_logiciel, id_user) WHERE id_logiciel=$id_logiciel AND id_user=$id_user";
+    //$pdo->prepare($sql)->execute([$id_logiciel, $id_user]);
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_assoc($result);
 }
 
 // READ
-function getPostUser($id_logiciel, $id_user) {
-    global $pdo;
-    $stmt = $pdo->prepare("SELECT * FROM postuser WHERE id_logiciel=? AND id_user=?");
-    $stmt->execute([$id_logiciel, $id_user]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+function getPostUser($conn,$id_logiciel, $id_user) {
+    $sql = "SELECT * FROM postuser WHERE id_logiciel=$id_logiciel AND id_user=$id_user";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_assoc($result);
 }
 
 // READ ALL
-function getAllPostUser() {
-    global $pdo;
-    return $pdo->query("SELECT * FROM postuser")->fetchAll(PDO::FETCH_ASSOC);
+function getAllPostUser($conn) {
+    $sql = "SELECT * FROM postuser";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
 // DELETE
-function deletePostUser($id_logiciel, $id_user) {
-    global $pdo;
-    $sql = "DELETE FROM postuser WHERE id_logiciel=? AND id_user=?";
-    $pdo->prepare($sql)->execute([$id_logiciel, $id_user]);
+function deletePostUser($conn,$id_logiciel, $id_user) {
+    $sql = "DELETE FROM postuser WHERE id_logiciel=$id_logiciel AND id_user=$id_user";
+    mysqli_query($conn, $sql);
 }
 ?>

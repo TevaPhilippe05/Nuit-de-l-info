@@ -2,38 +2,37 @@
 require 'db.php';
 
 // CREATE
-function createBadge($nom, $img, $description) {
-    global $pdo;
-    $sql = "INSERT INTO badge (nom, img, description) VALUES (?, ?, ?)";
-    $pdo->prepare($sql)->execute([$nom, $img, $description]);
+function createBadge($conn,$nom, $img, $description) {
+    $sql = "INSERT INTO badge (nom, img, description) VALUES ('$nom', '$img', '$description')";
+    $result =mysqli_query($conn, $sql);
+    return mysqli_fetch_assoc($result);
 }
 
 // READ
-function getBadge($id) {
-    global $pdo;
-    $sql = "SELECT * FROM badge WHERE id = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+function getBadge($conn,$id) {
+    $sql = "SELECT * FROM badge WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_assoc($result);
 }
 
 // READ ALL
-function getAllBadges() {
-    global $pdo;
-    return $pdo->query("SELECT * FROM badge")->fetchAll(PDO::FETCH_ASSOC);
+function getAllBadges($conn) {
+    $sql = "SELECT * FROM badge";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
 // UPDATE
-function updateBadge($id, $nom, $img, $description) {
-    global $pdo;
-    $sql = "UPDATE badge SET nom=?, img=?, description=? WHERE id=?";
-    $pdo->prepare($sql)->execute([$nom, $img, $description, $id]);
+function updateBadge($conn,$id, $nom, $img, $description) {
+    $sql = "UPDATE badge SET nom='$nom', img='$img', description='$description' WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_assoc($result);
 }
 
 // DELETE
-function deleteBadge($id) {
-    global $pdo;
-    $sql = "DELETE FROM badge WHERE id=?";
-    $pdo->prepare($sql)->execute([$id]);
+function deleteBadge($conn,$id) {
+    $sql = "DELETE FROM badge WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+    return mysqli_fetch_assoc($result);
 }
 ?>
