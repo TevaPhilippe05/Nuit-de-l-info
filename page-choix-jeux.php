@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="style/page-choix.css"/>
 </head>
 <body>
-
 <header>
     <div>
         <h2>Choix du Jeu – Plateforme NIRD</h2>
@@ -32,10 +31,6 @@
         <div class="button-container">
             <a href="jeu-quiz.php">
                 <button>Jeu – Quizz</button>
-            </a>
-
-            <a href="snake.php">
-                <button>Jeu – Snake</button>
             </a>
         </div>
 
