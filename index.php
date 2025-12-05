@@ -17,7 +17,10 @@
          <a href="page-choix-jeux.php">
             <button>Le Jeu (The Game)</button>
          </a>
-        <button>Forum Communautaire</button>
+         <a href="vue/db.php">
+            <button>Forum Communautaire</button>
+         </a>
+        
     </div>
     <section>
         <p>La <strong>Démarche NIRD</strong> est une initiative visant à transformer l'environnement numérique des établissements scolaires en le rendant plus éthique, écologique et accessible. Face aux défis tels que la fin de support de Windows 10 et l'urgence écologique, cette approche est essentielle pour garantir la <strong>souveraineté numérique</strong> et l'équité d'accès pour tous les élèves.</p>
