@@ -1,3 +1,13 @@
+:root {
+    --primary-color: #0056b3;
+    --secondary-color: #38761d;
+    --text-color: #333;
+    --background-color: #f8f9fa;
+    --card-background: #ffffff;
+    --border-color: #dee2e6; 
+}
+
+
 @font-face {
     font-family: 'pixel';
     src: url('fonts/OpenSans-Bold.ttf') format('truetype');
@@ -27,7 +37,8 @@ header {
     height: 120px;
     z-index: 10;
     padding: 0 20px;
-    background-color: #CEE0FF;
+    background-color: var(--primary-color);
+    color : var(--secondary-color);
 }
 
 header *{
