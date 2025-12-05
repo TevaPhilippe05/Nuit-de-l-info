@@ -5,9 +5,8 @@ include "db_connect.php";
 if(isset($_POST['valider'])){
     $pseudo = $_POST['nom_uti'];
     $password = $_POST['password'];
-    $conn = connect();
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users (nom_uti, password) VALUES ('$pseudo', '$hashed_password')";
+    $sql = "INSERT INTO users (`nom_uti`, `password`) VALUES ('$pseudo', '$hashed_password')";
     mysqli_query($conn, $sql) or die("Erreur SQL ! ".mysqli_error($conn));
     mysqli_close($conn);
 }
